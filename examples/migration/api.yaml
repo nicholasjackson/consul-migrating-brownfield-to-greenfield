@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    app: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+      annotations:
+        "consul.hashicorp.com/connect-inject": "true"
+        "consul.hashicorp.com/connect-service-protocol": "http"
+        "consul.hashicorp.com/service-tags": "v2"
+        "consul.hashicorp.com/service-meta-version": "2"
+    spec:
+      containers:
+      - name: api
+        image: nicholasjackson/fake-service:v0.7.8
+        ports:
+        - containerPort: 9090
+        env:
+        - name: "LISTEN_ADDR"
+          value: "0.0.0.0:9090"
+        - name: "NAME"
+          value: "API (cloud)"
+        - name: "MESSAGE"
+          value: "api response"

@@ -1,0 +1,11 @@
+---
+global:
+  datacenter: cloud
+
+server:
+  extraConfig: |
+    {
+      "advertise_addr_wan": "192.169.7.130",
+      "primary_datacenter": "onprem",
+      "retry_join_wan": ["192.169.7.2"]
+    }

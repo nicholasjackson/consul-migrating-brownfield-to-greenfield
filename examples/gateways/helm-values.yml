@@ -1,0 +1,23 @@
+---
+global:
+  datacenter: cloud
+
+server:
+  extraConfig: |
+    {
+      "advertise_addr_wan": "192.169.7.130",
+      "primary_datacenter": "onprem",
+      "retry_join_wan": ["192.169.7.2"]
+    }
+
+meshGateway:
+  enabled: true
+  mode: local
+  replicas: 1
+  wanAddress:
+    useNodeIP: false
+    host: "192.169.7.140"
+  service:
+    enabled: true
+    type: ClusterIP
+    port: 443

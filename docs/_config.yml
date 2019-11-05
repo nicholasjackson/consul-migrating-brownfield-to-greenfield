@@ -1,0 +1,36 @@
+---
+theme: just-the-docs
+remote_theme: pmarsceill/just-the-docs@v0.2.7
+color_scheme: "dark"
+heading_anchors: true
+
+title: Mawsm
+baseurl: "/migrating-applications-with-service-mesh" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+github_username:  eveld
+email: eveld@hashicorp.com
+
+# Build settings
+markdown: kramdown
+
+search_enabled: true
+# Set the search token separator for hyphenated-word search:
+search_tokenizer_separator: /[\s/]+/
+
+# Build settings
+markdown: kramdown
+
+plugins:
+  - jekyll-remote-theme
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
