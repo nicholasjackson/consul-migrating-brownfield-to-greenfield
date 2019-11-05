@@ -196,7 +196,11 @@ Configuration entries can be written using with the `consul config write` comman
 Write this file to your cluster:
 
 ```shell
-consul config write api_resolver.hcl`
+cd l7_config
+
+consul config write global_defaults.hcl
+
+consul config write api_resolver.hcl
 ```
 
 When you view the `Web` service in your browser the `API` will now be resolving correctly.
