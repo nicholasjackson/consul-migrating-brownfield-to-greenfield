@@ -71,13 +71,19 @@ service {
 
 The service definition file is specific to the service instance, and the most convenient way to register this is to add it to the agents config folder. When an agent starts or receives a reload command it will automatically process files in this folder.
 
-Create this file and save it as `web.hcl`.
+Create this file and save it as `web.hcl` under the `server_config` directory.
 
 Since your Consul agent already has a `config-dir` set to /config we can use a Docker volume to drop this file into your Fake VM.
 
+Add the following to your `docker-compose.yml` under
+the `web` service.
+
 ```yaml
+  web:
+    image: nicholasjackson/fake-service:vm-v0.7.8
     volumes:
       - "./server_config/web.hcl:/config/web.hcl"
+    ## Omitted for clarity
 ```
 
 If you look at the UI you will now see that the service has been registered.
@@ -106,7 +112,7 @@ The `web` and `api` services already have this process running in supervisor, ho
 
 This is completed using the `connect` stanza, for a default configuration you can simply register an empty `sidecar_service` block in your service configuration.
 
-Add the following `connect` stanza to your `web` and `api` service config. **Note:** This block is a child of the main `service` stanza.
+Add the following `connect` stanza to your `web` and `api` service config (in `server_config/web.hcl` and `serverr_config/api.hcl`, respectively). **Note:** This block is a child of the main `service` stanza.
 
 ```ruby
   connect {
@@ -147,7 +153,7 @@ upstreams {
 }
 ```
 
-Add this block to the service definition for your `web` service, your final service should look like the following example:
+Add this block to the service definition for your `web` service in `service_config/web.hcl`. Your final service should look like the following example:
 
 ```ruby
 service {
@@ -169,7 +175,26 @@ service {
 }
 ```
 
-In your `docker-compose.yml` the environment variable `UPSTREAM_URIS` is set to `http://api:9090`. Change this value to `http://localhost:9091` so that the Web service will use the service mesh to communicate with the API service. To make 100% sure that you are not sending any traffic over the docker network you can change the environment variable `LISTEN_ADDR` on the `api` service. Currently this is bound to all IP addresses. However; when you are using a service mesh only the dataplane needs public ingress so it is possible to change this to only listen on localhost `LISTEN_ADDR: localhost:9090`.  
+In your `docker-compose.yml`, examine the `web` section. The environment variable `UPSTREAM_URIS` is set to `http://api:9090`. Change this value to `http://localhost:9091`so that the Web service will use the service mesh to communicate with the API service.
+
+```yaml
+  web:
+    image: nicholasjackson/fake-service:vm-v0.7.8
+    environment:
+      LISTEN_ADDR: 0.0.0.0:9090
+      UPSTREAM_URIS: http://localhost:9091
+    ## Omitted for clarity
+```
+
+To make 100% sure that you are not sending any traffic over the docker network you can change the environment variable `LISTEN_ADDR` on the `api` service in the `docker-compose.yml`. Currently this is bound to all IP addresses. However; when you are using a service mesh only the dataplane needs public ingress so it is possible to change this to only listen on localhost `LISTEN_ADDR: localhost:9090`. 
+
+```yaml
+  api:
+    image: nicholasjackson/fake-service:vm-v0.7.8
+    environment:
+      LISTEN_ADDR: localhost:9090
+    ## Omitted for clarity
+```
 
 Once all these changes have been made, restart your application:
 
@@ -185,6 +210,10 @@ $ docker-compose up
 and reload the Web service at `http://localhost:9090/ui`. You should still see the API service successfully called however the URI is not http://localhost:9091 instead of http://api:9090.
 
 ![](images/getting_started/fake_service_final.png)
+
+In Consul at `http://localhost:8500`, you should see three nodes: Consul, Web, and API.
+
+![](images/getting_started/nodes.png)
 
 ## Summary
 In this section you have learned how to configure two existing services inside of a service mesh. The next section will look at how we can enable Consul Service Mesh for your new Greenfield service in Kubernetes.
