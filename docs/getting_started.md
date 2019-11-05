@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Getting Started
-nav_order: 2 
+nav_order: 2
 ---
 
 # Getting Started
@@ -11,7 +11,7 @@ This exercise familiarizes you with Consul and how it works with your applicatio
 Run the file `docker-compose.yml` in the `examples\getting_started` to start a Consul server and two services.
 
 ```bash
-➜ docker-compose up  
+➜ docker-compose up
 Creating network "getting_started_vpcbr" with driver "bridge"
 Creating getting_started_api_1    ... done
 Creating getting_started_consul_1 ... done
