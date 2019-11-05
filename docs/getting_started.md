@@ -47,9 +47,9 @@ autorestart=true
 priority=100
 ```
 
-If you click on the `Nodes` menu item in the Consul UI, you should see 3 nodes, the server, and the two agents for the `web` and `api` services.
+If you click on the `Nodes` menu item in the Consul UI, you should see 1 healthy node. We'll add configuration to the web and API nodes next!
 
-![](images/getting_started/nodes.png)
+![](images/getting_started/1_node.png)
 
 For full details on Consul options and configuration please checkout the Consul documentation:
 [https://www.consul.io/docs/agent/options.html](https://www.consul.io/docs/agent/options.html)
@@ -65,7 +65,7 @@ In order to register a service we need to tell consul about the service. This is
 service {
   name    = "web"      # Service name
   id      = "web-v1"   # Specific to the particular service instance, if omitted defaults to name
-  port    = 9090       # Add the port to the service catalog 
+  port    = 9090       # Add the port to the service catalog
 }
 ```
 
