@@ -4,12 +4,12 @@ remote_theme: pmarsceill/just-the-docs@v0.2.7
 color_scheme: "dark"
 heading_anchors: true
 
-title: Mawsm
+title: Workshop
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
-github_username:  nicholasjackson
-email: nic@hashicorp.com
+github_username: nicholasjackson
+email: jackson.nic@gmail.com
 
 # Build settings
 markdown: kramdown
