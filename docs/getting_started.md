@@ -31,7 +31,7 @@ You should be able to access the consul server in your browser at [http://localh
 ![](images/getting_started/consul_ui.png)
 
 
-You will also be able to access the application which is running at [http://localhost:9090](http://localhost:9090)
+You will also be able to access the application which is running at [http://localhost:9090/ui](http://localhost:9090/ui)
 
 ![](images/getting_started/fake_service.png)
 
