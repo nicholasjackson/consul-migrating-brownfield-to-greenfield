@@ -107,6 +107,7 @@ annotations:
 Consul service mesh in Kubernetes runs an admission controller, the annotation `"consul.hashicorp.com/connect-inject": "true"`, informs the controller that this pod needs to be service mesh enabled. Before the pod is deployed the controller will modify it adding the dataplane. Let`s run the file and see the product of this.
 
 ```bash
+➜ examples/kubernetes
 ➜ kubectl apply -f currency.yaml 
 deployment.apps/currency created
 ```
@@ -137,7 +138,7 @@ kubectl describe pod currency-5b64b6c67c-76f8m
 Containers:
   currency:
     Container ID:   containerd://6b76950a8beb3a3bb900bd03b7a6af079e2944af8048f4fd37787918a44b5f58
-    Image:          nicholasjackson/fake-service:v0.7.7
+    Image:          nicholasjackson/fake-service:v0.7.8
     Image ID:       docker.io/nicholasjackson/fake-service@sha256:2e41a8c8e94ea0318d67ce82ea12fca8dfec4d916ff9a34246bf26713d4d369f
     Port:           9090/TCP
     Host Port:      0/TCP
