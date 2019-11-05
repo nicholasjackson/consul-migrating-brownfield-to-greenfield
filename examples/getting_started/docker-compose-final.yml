@@ -14,7 +14,7 @@ services:
         ipv4_address: 10.5.0.2
 
   web:
-    image: nicholasjackson/fake-service:vm-v0.7.7
+    image: nicholasjackson/fake-service:vm-v0.7.8
     environment:
       LISTEN_ADDR: 0.0.0.0:9090
       UPSTREAM_URIS: http://localhost:9091
@@ -22,6 +22,7 @@ services:
       MESSAGE: "Hello World"
       HTTP_CLIENT_KEEP_ALIVES: "false"
       CONSUL_SERVER: 10.5.0.2
+      CONSUL_DATACENTER: dc1
       SERVICE_ID: web-v1
     
     volumes:
@@ -34,13 +35,14 @@ services:
       - 9090:9090
 
   api:
-    image: nicholasjackson/fake-service:vm-v0.7.7
+    image: nicholasjackson/fake-service:vm-v0.7.8
     environment:
       LISTEN_ADDR: localhost:9090
       NAME: API
       MESSAGE: "Hello World"
       HTTP_CLIENT_KEEP_ALIVES: "false"
       CONSUL_SERVER: 10.5.0.2      
+      CONSUL_DATACENTER: dc1
       CONSUL_GRPC_ADDR: localhost:8502
 
       SERVICE_ID: api-v1
