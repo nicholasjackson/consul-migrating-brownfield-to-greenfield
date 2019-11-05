@@ -175,4 +175,4 @@ $ docker-compose down
 ## Summary
 In this section you have learned to join multiple datacenters, this is a core technique in order to enable cross datacenter communication using Consul Service Mesh. In the next section you will learn about Gateways which are used as bridges for service traffic and see how easy it is for services in different datacenters to communicate.
 
-[Next - Configuring Gateways](gateways.hcl)
+[Next - Configuring Gateways](gateways.html)
