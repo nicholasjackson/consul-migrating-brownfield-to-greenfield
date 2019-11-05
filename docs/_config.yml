@@ -5,11 +5,11 @@ color_scheme: "dark"
 heading_anchors: true
 
 title: Mawsm
-baseurl: "/migrating-applications-with-service-mesh" # the subpath of your site, e.g. /blog
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
-github_username:  eveld
-email: eveld@hashicorp.com
+github_username:  nicholasjackson
+email: nic@hashicorp.com
 
 # Build settings
 markdown: kramdown
